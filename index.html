@@ -2,7 +2,7 @@
 <html>
 <body>
 
-
+<h1>Vat Calculator</h1>
 <form>
   <label for="price">Price:</label><br>
   <input type="number" id="price" name="price"><br>
@@ -12,15 +12,37 @@
 
 <button type="button" onclick="myFunction()">Click Me!</button>
 
-<p id="demo"></p>
+<p id="afterVatPrice"></p>
+<p id="vatPrice"></p>
 
+
+
+<h2>How to calculate VAT</h2>
+<ul>
+<li>
+<h3>Excluding VAT from gross sum:</h3>
+
+<p><b>VAT calculation formula</b> for VAT exclusion is the following: to calculate VAT having the gross amount you should <u>divide</u> the gross amount by <u>1 + VAT percentage</u> (i.e. if it is 15%, then you should divide by 1.15), then <u>subtract the gross amount</u>, multiply by <u>-1</u> and <u>round to the closest</u> value (including eurocents). The last two operations are not mandatory since you see the VAT value even before you do them.<p>
+</li>
+<li> 
+<h3>Adding VAT to net amount:</h3>
+Easy deal. Simply multiply the net amount by <u>1 + VAT percentage</u> (i.e. multiply by 1.15 if VAT is 15%) and you'll get the gross amount. Or multiply by VAT percentage to get the VAT value.<p>
+</li>
+<li>
+<p><b>Read</b> 
+<a href="https://en.wikipedia.org/wiki/Value-added_tax">more about VAT tax</a> on Wikipedia.</p>
+</li>
+</ul>
 <script>
 function myFunction() {
-  document.getElementById("demo").innerHTML = "Price after vat: " + calculateVat(price.value,percent.value);
+  document.getElementById("afterVatPrice").innerHTML = "Price after vat: " + calculateVat(price.value,percent.value);
+
+
+document.getElementById("vatPrice").innerHTML = "vat Price: " + (price.value - calculateVat(price.value,percent.value)).toFixed(2);
 }
 
 function calculateVat(price,percent){
- return (price/(1+percent/100))
+ return (price/(1+percent/100)).toFixed(2)
 }
 </script>
 
