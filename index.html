@@ -5,12 +5,13 @@
 <h1>Vat Calculator</h1>
 <form>
   <label for="price">Price:</label><br>
-  <input type="number" id="price" name="price"><br>
+  <input type="number" id="price" min="0" name="price" ><br>
+<br>
   <label for="percent">Percentage:</label><br>
-  <input type="number" id="percent" name="percent">
+  <input type="number" id="percent" min="0" max="100" name="percent">
 </form>
-
-<button type="button" onclick="myFunction()">Click Me!</button>
+<br>
+<button type="button" onclick="myFunction()">Calculate!</button>
 
 <p id="afterVatPrice"></p>
 <p id="vatPrice"></p>
@@ -35,6 +36,18 @@ Easy deal. Simply multiply the net amount by <u>1 + VAT percentage</u> (i.e. mul
 </ul>
 <script>
 function myFunction() {
+
+if ((price.value < 0))
+{
+    alert("Price cannot less than 0");
+return
+}
+
+if ((percent.value < 0 || percent.value > 100 ))
+{
+    alert("Percentage can only be between 0 and 100");
+return
+}
   document.getElementById("afterVatPrice").innerHTML = "Price after vat: " + calculateVat(price.value,percent.value);
 
 
