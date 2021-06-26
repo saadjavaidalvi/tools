@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<form>
+  <label for="price">Price:</label><br>
+  <input type="number" id="price" name="price"><br>
+  <label for="percent">Percentage:</label><br>
+  <input type="number" id="percent" name="percent">
+</form>
+
+<button type="button" onclick="myFunction()">Click Me!</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Price after vat: " + calculateVat(price.value,percent.value);
+}
+
+function calculateVat(price,percent){
+ return (price/(1+percent))*100
+}
+</script>
+
+
+</body>
+</html>
